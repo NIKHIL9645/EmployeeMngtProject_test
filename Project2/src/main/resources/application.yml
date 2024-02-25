@@ -8,11 +8,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: nikhilnathe@@9645##
-#
-#  security:
-#    user:
-#      name: admin
-#      password: Nikhil
+
+  security:
+    user:
+      name: admin
+      password: Nikhil
 
   jpa:
     hibernate:
