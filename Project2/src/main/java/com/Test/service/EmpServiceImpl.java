@@ -3,23 +3,14 @@ package com.Test.service;
 import com.Test.entity.Employee;
 import com.Test.error.EmployeeNotFoundException;
 import com.Test.repository.EmployeeRepository;
-import jakarta.persistence.Id;
-import jakarta.validation.Valid;
-import lombok.experimental.FieldDefaults;
-import org.apache.el.util.ReflectionUtil;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
 import java.lang.reflect.Field;
-import java.security.Key;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 @Service
 public class EmpServiceImpl implements  EmpService {
@@ -27,6 +18,12 @@ public class EmpServiceImpl implements  EmpService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
+
+
+    @Override
+    public List<Employee> fetchDepartmentByName(String name) {
+        return employeeRepository.findByDeptName(name);
+    }
 
 
     @Override
@@ -51,6 +48,7 @@ public class EmpServiceImpl implements  EmpService {
         return employeeRepository.findAll();
     }
 
+
     @Override
     public void deleteEmployeeById(Long id) throws EmployeeNotFoundException {
 
@@ -64,7 +62,8 @@ public class EmpServiceImpl implements  EmpService {
     @Override
     public Employee updateEmployee2(Long id, Employee employee) throws EmployeeNotFoundException {
 
-        Employee updateEmployee = employeeRepository.findById(id).orElseThrow(() -> new EmployeeNotFoundException("Employee not exist with this id: " + id));
+        Employee updateEmployee = employeeRepository.findById(id).
+                orElseThrow(() -> new EmployeeNotFoundException("Employee not exist with this id: " + id));
 
         updateEmployee.setName(employee.getName());
         updateEmployee.setAddress(employee.getAddress());
@@ -93,5 +92,7 @@ public class EmpServiceImpl implements  EmpService {
         }
         return null;
     }
+
+
 
 }

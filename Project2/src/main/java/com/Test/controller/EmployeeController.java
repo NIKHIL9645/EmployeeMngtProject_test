@@ -5,9 +5,7 @@ import com.Test.entity.Employee;
 import com.Test.error.EmployeeNotFoundException;
 import com.Test.service.EmpServiceImpl;
 //import jakarta.validation.Valid;
-import jakarta.persistence.Id;
 import jakarta.validation.Valid;
-import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.*;
 import java.util.List;
 import java.util.Map;
 
@@ -27,6 +24,20 @@ public class EmployeeController {
     private EmpServiceImpl empService;
 
     private final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
+
+
+
+
+    @GetMapping("/alldept/{name}")
+    public ResponseEntity<List<Employee>> getDepartmentByName(@PathVariable String name){
+
+        List<Employee> employee = empService.fetchDepartmentByName(name);
+//        logger.info("Chekcing");
+        return  ResponseEntity.status(HttpStatus.OK).body(employee);
+
+    }
+
+
 
     @PostMapping("/save")
     public ResponseEntity<Employee> saveEmployee( @Valid @RequestBody Employee employee){
@@ -75,6 +86,9 @@ public class EmployeeController {
         return  new ResponseEntity<>(employee,HttpStatus.OK);
 
     }
+
+
+
 
 
 }

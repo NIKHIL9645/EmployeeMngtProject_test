@@ -44,6 +44,8 @@ public class Employee {
     @JsonFormat(pattern="yyyy-MM-dd")
     private Date ejoinDate;
 
+    @Column(name = "deptname")
+    private String deptName;
 
 
 }

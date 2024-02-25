@@ -1,18 +1,18 @@
 
 server:
-  port: 8080
+  port: 8090
 
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/hyd
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: root
-
-  security:
-    user:
-      name: admin
-      password: Nikhil
+    password: nikhilnathe@@9645##
+#
+#  security:
+#    user:
+#      name: admin
+#      password: Nikhil
 
   jpa:
     hibernate:
