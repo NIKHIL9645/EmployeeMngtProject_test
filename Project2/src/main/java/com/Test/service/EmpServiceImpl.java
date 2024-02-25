@@ -20,6 +20,8 @@ public class EmpServiceImpl implements  EmpService {
     private EmployeeRepository employeeRepository;
 
 
+
+    //get list of all Employees , department asociated with it || find employee by department name
     @Override
     public List<Employee> fetchDepartmentByName(String name) {
         return employeeRepository.findByDeptName(name);

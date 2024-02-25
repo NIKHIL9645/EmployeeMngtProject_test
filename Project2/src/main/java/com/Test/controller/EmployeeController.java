@@ -28,6 +28,7 @@ public class EmployeeController {
 
 
 
+    //get All employees belongs to entered department name
     @GetMapping("/alldept/{name}")
     public ResponseEntity<List<Employee>> getDepartmentByName(@PathVariable String name){
 
@@ -39,6 +40,7 @@ public class EmployeeController {
 
 
 
+    //save the Employee
     @PostMapping("/save")
     public ResponseEntity<Employee> saveEmployee( @Valid @RequestBody Employee employee){
         Employee employee1 = empService.saveEmp(employee);
@@ -46,6 +48,7 @@ public class EmployeeController {
         return  ResponseEntity.status(HttpStatus.OK).body(employee1);
     }
 
+    // get employee by using id
     @GetMapping("/employee/{id}")
     public ResponseEntity<Employee> getEmployeeById(@PathVariable Long id) throws EmployeeNotFoundException {
         Employee employeeById = empService.getEmployeeById(id);
@@ -53,6 +56,7 @@ public class EmployeeController {
         return  ResponseEntity.status(HttpStatus.OK).body(employeeById);
     }
 
+//    get All employee
     @GetMapping("/all")
     public  ResponseEntity<List<Employee>> getAllEmployees(){
         List<Employee> allEmployee = empService.getAllEmployee();
@@ -62,6 +66,7 @@ public class EmployeeController {
 
 
 
+    //delete Employee based on id
     @DeleteMapping("/delete/{id}")
     public String deleteById(@PathVariable Long id) throws EmployeeNotFoundException {
         empService.deleteEmployeeById(id);
@@ -70,6 +75,7 @@ public class EmployeeController {
     }
 
 
+    //update Employee
     @PutMapping("/{id}")
     public  ResponseEntity<Employee> updateEmployee(@PathVariable Long id , @Valid @RequestBody Employee employee) throws EmployeeNotFoundException {
 
@@ -80,6 +86,7 @@ public class EmployeeController {
 
     }
 
+    //partial updates on employee
     @PatchMapping("/{id}")
     public ResponseEntity<Employee> updateEmployeePartiallyUisngId(@PathVariable Long id, @RequestBody  Map<String,Object> fields) throws EmployeeNotFoundException {
         Employee employee = empService.updatePartially(id, fields);

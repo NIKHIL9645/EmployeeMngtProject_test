@@ -21,6 +21,8 @@ public interface EmpService {
 
     Employee updatePartially(Long id, Map<String, Object> fields) throws EmployeeNotFoundException;
 
+
+    //get All employees belongs to entered department name
     public List<Employee> fetchDepartmentByName(String name);
 
 
